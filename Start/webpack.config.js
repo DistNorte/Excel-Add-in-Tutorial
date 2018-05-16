@@ -14,7 +14,15 @@ module.exports = {
           query: {
             presets: ["es2016"]
           }
+          
         }
     ]
   }
 };
+node: {
+  fs: 'empty'
+};
+externals: [
+{
+  './cptable': 'var cptable'
+}]
