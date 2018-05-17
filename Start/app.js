@@ -13,7 +13,7 @@
                 console.log('Sorry. The tutorial add-in uses Excel.js APIs that are not available in your version of Office.');
             }
             
-            $('#create-table').click(createTable);
+            $('#create-table').click(calculateShare);
         
         });
     };
@@ -46,6 +46,31 @@
             expensesTable.getRange().format.autofitRows();
      
             return context.sync();
+        })
+        .catch(function (error) {
+            console.log("Error: " + error);
+            if (error instanceof OfficeExtension.Error) {
+                console.log("Debug info: " + JSON.stringify(error.debugInfo));
+            }
+        });
+     }
+     function calculateShare() {
+        Excel.run(function (context) {
+            var sheets = context.workbook.worksheets;
+            sheets.load("items/name");
+
+            return context.sync()
+                .then(function () {
+                    if (sheets.items.length > 1) {
+                        console.log(`There are ${sheets.items.length} worksheets in the workbook:`);
+                    } else {
+                        console.log(`There is one worksheet in the workbook:`);
+                    }
+                    for (var i in sheets.items) {
+                        console.log(sheets.items[i].name);
+                    }
+                });     
+            
         })
         .catch(function (error) {
             console.log("Error: " + error);
