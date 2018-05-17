@@ -41,9 +41,9 @@
             ]);
      
             // TODO6: Queue commands to format the table.
-            expensesTable.columns.getItemAt(3).getRange().numberFormat = [['€#,##0.00']];
-            expensesTable.getRange().format.autofitColumns();
-            expensesTable.getRange().format.autofitRows();
+            //expensesTable.columns.getItemAt(3).getRange().numberFormat = [['€#,##0.00']];
+            //expensesTable.getRange().format.autofitColumns();
+            //expensesTable.getRange().format.autofitRows();
      
             return context.sync();
         })
